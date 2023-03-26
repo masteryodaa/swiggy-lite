@@ -1,7 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
 
 const Navbar = () => {
+  const { user } = useContext(UserContext);
+  const cartItems = useSelector(store => store.cart.items)
+  console.log(cartItems);
+
   useEffect(() => {
     getLocation();
   }, []);
@@ -53,17 +59,20 @@ const Navbar = () => {
         </div>
         <div className="nav-links">
           <ul>
-            <li>
-              <i className="bi bi-person"></i>Login
-            </li>
+            <Link to="/profile">
+              <li>
+                <i className="bi bi-person"></i>
+                {user.name}
+              </li>
+            </Link>
             <Link to="/cart">
               <li>
-                <i className="bi bi-bag"></i>Cart
+                <i className="bi bi-bag"></i>Cart  <div className="cartCount"> {cartItems!=0?cartItems.length:0}</div>
               </li>
             </Link>
             <Link to="/about">
               <li>
-              <i className="bi bi-chat"></i>About Us
+                <i className="bi bi-chat"></i>About Us
               </li>
             </Link>
           </ul>

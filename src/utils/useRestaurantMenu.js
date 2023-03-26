@@ -27,7 +27,7 @@ const useRestaurantMenu = (id) => {
         info:info,
         menu:menu,
       }
-      console.log(res);
+      // console.log(res);
       setRestaurantMenu(res)
     });
   };

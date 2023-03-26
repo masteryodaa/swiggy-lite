@@ -3,6 +3,9 @@ import Shimmer from "./Shimmer";
 import { useEffect, useState } from "react";
 import Collapsible from "react-collapsible";
 import useRestaurant from "../utils/useRestaurantMenu";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
+import store from "../utils/store";
 
 const RestaurantMenu = () => {
   const { id } = useParams();
@@ -11,7 +14,13 @@ const RestaurantMenu = () => {
   const info = res.info;
   const menu = res.menu;
 
-  return (!info || !menu)  ? (
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    dispatch(addItem(item)); // {payload: 'coconut'}
+  };
+
+  return !info || !menu ? (
     <Shimmer />
   ) : (
     <div className="menu">
@@ -33,7 +42,7 @@ const RestaurantMenu = () => {
       <div className="menu-category">
         <ul>
           {Object.values(menu).map((item, id) => (
-          // {menu.map((item, id) => ( 
+            // {menu.map((item, id) => (
             //   <li key={key}>{item.card.card.title}</li>
             <div className="cats" key={id}>
               <div className="catleft">
@@ -46,12 +55,7 @@ const RestaurantMenu = () => {
                             <p>{item.card.info.name}</p>
                             {/* <span>₹{item.card.info.price}</span> */}
                             {/* insert dot before the last second character of price */}
-                            <span>
-                              ₹
-                              {String(item.card.info.price).slice(0, -2) +
-                                "." +
-                                String(item.card.info.price).slice(-2)}
-                            </span>
+                            <span>₹{item.card.info.price / 100}</span>
                           </div>
                           <div className="dish-image">
                             {item.card.info.imageId ? (
@@ -62,7 +66,13 @@ const RestaurantMenu = () => {
                             ) : (
                               <img src=""></img>
                             )}
-                            <div className="addtocart">ADD</div>
+                            {/* <div className="addtocart" onClick={handleAddItem}>ADD</div> */}
+                            <button
+                              className="addtocart"
+                              onClick={() => handleAddItem(item)}
+                            >
+                              ADD
+                            </button>
                           </div>
                         </li>
                       )
