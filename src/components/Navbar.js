@@ -1,6 +1,7 @@
 import { useEffect, useContext } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Logo from "../assets/swiggy-logo.png";
 import UserContext from "../utils/UserContext";
 
 const Navbar = () => {
@@ -41,8 +42,9 @@ const Navbar = () => {
         <div className="logo">
           <Link to="/">
             <img
+              data-testid="logo"
               height={50}
-              src="https://seeklogo.com/images/S/swiggy-logo-8EF8260FA4-seeklogo.com.png"
+              src={Logo}
               alt="Swiggy"
             />
           </Link>
@@ -67,7 +69,7 @@ const Navbar = () => {
             </Link>
             <Link to="/cart">
               <li>
-                <i className="bi bi-bag"></i>Cart  <div className="cartCount"> {cartItems!=0?cartItems.length:0}</div>
+                <i className="bi bi-bag"></i>Cart  <div data-testid="cart" className="cartCount">{cartItems!=0?cartItems.length:0}</div>
               </li>
             </Link>
             <Link to="/about">

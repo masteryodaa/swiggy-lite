@@ -101,6 +101,9 @@ body {
     margin-left: 10px;
     font-size: 20px;
     color: #727272;
+}
+
+.search-btn{
     cursor: pointer;
     position: absolute;
     right: 10px;

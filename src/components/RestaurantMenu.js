@@ -20,7 +20,7 @@ const RestaurantMenu = () => {
     dispatch(addItem(item)); // {payload: 'coconut'}
   };
 
-  return !info || !menu ? (
+  return !info  ? (
     <Shimmer />
   ) : (
     <div className="menu">
@@ -40,7 +40,7 @@ const RestaurantMenu = () => {
         </div>
       </div>
       <div className="menu-category">
-        <ul>
+        <ul data-testid="menu">
           {Object.values(menu).map((item, id) => (
             // {menu.map((item, id) => (
             //   <li key={key}>{item.card.card.title}</li>
