@@ -20,7 +20,7 @@ const RestaurantMenu = () => {
     dispatch(addItem(item)); // {payload: 'coconut'}
   };
 
-  return !info  ? (
+  return !info || !menu ? (
     <Shimmer />
   ) : (
     <div className="menu">
