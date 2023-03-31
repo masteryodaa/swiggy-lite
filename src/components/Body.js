@@ -40,11 +40,11 @@ const Body = () => {
     );
     data = await data.json();
     // console.log(data.data.cards[2].data.data.cards)
-    act(() => {
-      setAllRestaurants(data?.data?.cards[2]?.data?.data?.cards);
-      setFilteredRestaurants(data?.data?.cards[2]?.data?.data?.cards);
-      setOpenRestaurant(data?.data?.cards[2]?.data?.data?.totalOpenRestaurants);
-    });
+    // act(() => {
+    setAllRestaurants(data?.data?.cards[2]?.data?.data?.cards);
+    setFilteredRestaurants(data?.data?.cards[2]?.data?.data?.cards);
+    setOpenRestaurant(data?.data?.cards[2]?.data?.data?.totalOpenRestaurants);
+    // });
   }
 
   useEffect(() => {
